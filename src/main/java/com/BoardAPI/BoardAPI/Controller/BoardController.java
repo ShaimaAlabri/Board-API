@@ -39,7 +39,20 @@ public class BoardController {
 //     Get Board
     @GetMapping
     public List<Board> getBoard (){return boardService.getBoard();}
-    
+
+//    update
+    @PutMapping("/{id}")
+    public ResponseEntity<GetBoardResponseObject> updateBoard (@PathVariable Long id,@RequestBody GetBoardRequestObject updateBoard){
+    GetBoardResponseObject responseObject=boardService.updateBoard(id,updateBoard);
+    if (responseObject !=null) {
+        return ResponseEntity.ok(responseObject);
+
+    }else {
+        return ResponseEntity.notFound().build();
+    }
+
+    }
+
 
 
 
