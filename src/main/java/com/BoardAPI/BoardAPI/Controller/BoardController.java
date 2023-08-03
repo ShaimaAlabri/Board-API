@@ -17,45 +17,58 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/board")
 public class BoardController {
-     @Autowired
+    @Autowired
     BoardService boardService;
-     private final Map<String, GetBoardResponseObject>boards=new HashMap<>();
+    private final Map<String, GetBoardResponseObject> boards = new HashMap<>();
 
-     @PostMapping
-    public ResponseEntity<GetBoardResponseObject> createBoard(@RequestBody GetBoardRequestObject request){
-         Board board=new Board();
-         board.setTitle(request.getTitle());
-         Board boardCreate=boardService.createBoard(board);
-         GetBoardResponseObject responseObject=new GetBoardResponseObject();
-         responseObject.setBoardId(String.valueOf(boardCreate.getId()));
-         responseObject.setName(boardCreate.getTitle());
-         responseObject.setColumns(getDefaultColumn());
-         return new ResponseEntity<>(responseObject, HttpStatus.OK);
-     }
-     private String [] getDefaultColumn(){
-         return new  String[]{"To Do","In Progress","Done"};
-     }
+    @PostMapping
+    public ResponseEntity<GetBoardResponseObject> createBoard(@RequestBody GetBoardRequestObject request) {
+        Board board = new Board();
+        board.setTitle(request.getTitle());
+        Board boardCreate = boardService.createBoard(board);
+        GetBoardResponseObject responseObject = new GetBoardResponseObject();
+        responseObject.setBoardId(String.valueOf(boardCreate.getId()));
+        responseObject.setName(boardCreate.getTitle());
+        responseObject.setColumns(getDefaultColumn());
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+    }
 
-//     Get Board
+    private String[] getDefaultColumn() {
+        return new String[]{"To Do", "In Progress", "Done"};
+    }
+
+    //     Get Board
     @GetMapping
-    public List<Board> getBoard (){return boardService.getBoard();}
+    public List<Board> getBoard() {
+        return boardService.getBoard();
+    }
 
-//    update
+    //    update
     @PutMapping("/{id}")
-    public ResponseEntity<GetBoardResponseObject> updateBoard (@PathVariable Long id,@RequestBody GetBoardRequestObject updateBoard){
-    GetBoardResponseObject responseObject=boardService.updateBoard(id,updateBoard);
-    if (responseObject !=null) {
-        return ResponseEntity.ok(responseObject);
+    public ResponseEntity<GetBoardResponseObject> updateBoard(@PathVariable Long id, @RequestBody GetBoardRequestObject updateBoard) {
+        GetBoardResponseObject responseObject = boardService.updateBoard(id, updateBoard);
+        if (responseObject != null) {
+            return ResponseEntity.ok(responseObject);
 
-    }else {
-        return ResponseEntity.notFound().build();
-    }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
 
-    }
+        }
+    
+    @DeleteMapping("/{id]")
 
-
-
-
-
-
+    public void deleteBoard (@PathVariable Long id){
+        boardService.deleteBoard(id);}
 }
+
+
+
+
+
+
+
+
+
+
+
