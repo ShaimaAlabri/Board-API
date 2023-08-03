@@ -7,13 +7,11 @@ import com.BoardAPI.BoardAPI.Service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,6 +35,12 @@ public class BoardController {
      private String [] getDefaultColumn(){
          return new  String[]{"To Do","In Progress","Done"};
      }
+
+//     Get Board
+    @GetMapping
+    public List<Board> getBoard (){return boardService.getBoard();}
+    
+
 
 
 
