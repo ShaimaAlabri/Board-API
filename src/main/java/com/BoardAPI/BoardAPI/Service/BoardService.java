@@ -48,5 +48,7 @@ public class BoardService {
         return null;
 
     }
+//    delete
+    public  void deleteBoard(Long id){boardRepository.deleteById(id);}
 
 }
