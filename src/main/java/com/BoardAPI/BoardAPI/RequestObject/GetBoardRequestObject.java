@@ -1,4 +1,4 @@
-package com.BoardAPI.BoardAPI.RequstObject;
+package com.BoardAPI.BoardAPI.RequestObject;
 
 import com.BoardAPI.BoardAPI.Models.Board;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetBoardRequstObject {
+public class GetBoardRequestObject {
     Board board;
      String title;
 

@@ -2,7 +2,7 @@ package com.BoardAPI.BoardAPI.Service;
 
 import com.BoardAPI.BoardAPI.Models.Board;
 import com.BoardAPI.BoardAPI.Repository.BoardRepository;
-import com.BoardAPI.BoardAPI.RequstObject.GetBoardRequstObject;
+import com.BoardAPI.BoardAPI.RequestObject.GetBoardRequestObject;
 import com.BoardAPI.BoardAPI.ResponseObject.GetBoardResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class BoardService {
 
     }
     //update
-    public GetBoardResponseObject updateBoard(Long boardId, GetBoardRequstObject updateBoard){
+    public GetBoardResponseObject updateBoard(Long boardId, GetBoardRequestObject updateBoard){
         Optional<Board> optionalBoard=boardRepository.findById(boardId);
         if (optionalBoard.isPresent()){
             Board board=optionalBoard.get();
@@ -50,5 +50,17 @@ public class BoardService {
     }
 //    delete
     public  void deleteBoard(Long id){boardRepository.deleteById(id);}
+
+
+    public GetBoardResponseObject getBoardResponseObject (Long boardId) {
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        if (optionalBoard.isPresent()) {
+            Board board = optionalBoard.get();
+            GetBoardResponseObject response = new GetBoardResponseObject();
+            response.setTitle(board.getTitle());
+            return response;
+        }
+        return null;
+    }
 
 }
