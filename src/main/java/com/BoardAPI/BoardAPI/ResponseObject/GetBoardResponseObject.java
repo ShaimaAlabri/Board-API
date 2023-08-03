@@ -14,6 +14,10 @@ public class GetBoardResponseObject {
     String name;
     String[]columns;
 
+    public String getBoardId(){return boardId;}
+    public void setBoardId(String boardId){this.boardId=boardId;}
+    public void setTitle (String title){this.name=title;}
+
 
 
 

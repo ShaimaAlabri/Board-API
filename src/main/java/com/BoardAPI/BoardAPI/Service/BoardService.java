@@ -2,10 +2,12 @@ package com.BoardAPI.BoardAPI.Service;
 
 import com.BoardAPI.BoardAPI.Models.Board;
 import com.BoardAPI.BoardAPI.Repository.BoardRepository;
+import com.BoardAPI.BoardAPI.ResponseObject.GetBoardResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -18,5 +20,19 @@ public class BoardService {
 //    get all boards
     public List<Board> getBoard(){
         return boardRepository.findAll();
+    }
+
+//    get by ID
+    public GetBoardResponseObject getById(Long boardId){
+        Optional<Board> optionalBoard=boardRepository.findById(boardId);
+        if (optionalBoard.isPresent()){
+            Board board=optionalBoard.get();
+            GetBoardResponseObject response=new GetBoardResponseObject();
+            response.setBoardId(String.valueOf(board.getId()));
+            response.setTitle(board.getTitle());
+            return response;
+        }
+        return null;
+
     }
 }
