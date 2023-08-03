@@ -55,11 +55,16 @@ public class BoardController {
         }
 
         }
-    
+
     @DeleteMapping("/{id]")
 
     public void deleteBoard (@PathVariable Long id){
         boardService.deleteBoard(id);}
+
+//    get by id
+    public GetBoardResponseObject getBoardId (@PathVariable Long id){
+        return boardService.getById(id);
+    }
 }
 
 
