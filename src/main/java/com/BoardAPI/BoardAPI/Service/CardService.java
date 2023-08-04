@@ -1,11 +1,8 @@
 package com.BoardAPI.BoardAPI.Service;
 
-import com.BoardAPI.BoardAPI.Models.Board;
 import com.BoardAPI.BoardAPI.Models.Cards;
-import com.BoardAPI.BoardAPI.Repository.BoardRepository;
 import com.BoardAPI.BoardAPI.Repository.CardRepository;
-import com.BoardAPI.BoardAPI.RequestObject.GetBoardRequestObject;
-import com.BoardAPI.BoardAPI.ResponseObject.GetBoardResponseObject;
+import com.BoardAPI.BoardAPI.RequestObject.GetCardRequestObject;
 import com.BoardAPI.BoardAPI.ResponseObject.GetCardResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +15,8 @@ public class CardService {
     CardRepository cardRepository;
     private static Map<Long,List<Cards>> cardsInBoard =new HashMap<>();
 
-    //Create board
-    public Cards addCards (Long card_id,Cards cards){
+    //Create card
+    public Cards cardsInBoard (Long card_id,Cards cards){
        cards.setSection("2");
        Cards saveCard =cardRepository.save(cards);
        return saveCard;
@@ -31,7 +28,7 @@ public class CardService {
     }
 
     //    get all boards
-    public List<Cards> getCard(){
+    public List<Cards> getCards(){
         return cardRepository.findAll();
     }
 
@@ -50,7 +47,7 @@ public class CardService {
 
     }
     //update
-    public GetCardResponseObject updateCard(Long card_id, GetBoardResponseObject updateCard){
+    public GetCardResponseObject updateCard(Long card_id, GetCardRequestObject updateCard){
         Optional<Cards> optionalCards=cardRepository.findById(card_id);
         if (optionalCards.isPresent()){
             Cards cards=optionalCards.get();
@@ -64,7 +61,7 @@ public class CardService {
 
     }
     //    delete
-    public  void deleteCard(Long id){cardRepository.deleteById(id);}
+    public  void deleteCard(Long card_id){cardRepository.deleteById(card_id);}
 
 
 
