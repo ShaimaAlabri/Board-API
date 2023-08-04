@@ -1,14 +1,12 @@
 package com.BoardAPI.BoardAPI.ResponseObject;
 
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
 @Getter
-@Entity
-@Data
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class GetCardResponseObject {
     Long card_id;
     String title;
