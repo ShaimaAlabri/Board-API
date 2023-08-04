@@ -23,6 +23,11 @@ public class Board {
     @MapKeyColumn(name = "column_index")
     private Map<Integer,String> columns;
 
+    @OneToMany
+    @JoinColumn(name = "cards_id",referencedColumnName = "card_id")
+    Cards cards;
+
+
 
 
 }

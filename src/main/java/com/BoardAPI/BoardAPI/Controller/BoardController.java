@@ -56,7 +56,12 @@ public class BoardController {
 
         }
 
-    @DeleteMapping("/{id]")
+        @GetMapping("/{id}")
+        public GetBoardResponseObject getById (@PathVariable Long id ){
+        return boardService.getById(id);
+        }
+
+    @DeleteMapping("/{id}")
 
     public void deleteBoard (@PathVariable Long id){
         boardService.deleteBoard(id);}

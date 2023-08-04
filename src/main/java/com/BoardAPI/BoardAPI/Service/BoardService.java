@@ -31,6 +31,7 @@ public class BoardService {
             GetBoardResponseObject response=new GetBoardResponseObject();
             response.setBoardId(String.valueOf(board.getId()));
             response.setTitle(board.getTitle());
+            response.setName(board.getTitle());
             return response;
         }
         return null;
