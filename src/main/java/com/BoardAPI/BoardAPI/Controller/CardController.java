@@ -51,7 +51,7 @@ public class CardController {
     }
 
 // update
-    @PutMapping
+    @PutMapping("/{card_id}")
     public ResponseEntity<GetCardResponseObject>updateCard(@PathVariable Long card_id,@RequestBody GetCardRequestObject updateCard){
         GetCardResponseObject responseObject=cardService.updateCard(card_id,updateCard);
         if (responseObject !=null){

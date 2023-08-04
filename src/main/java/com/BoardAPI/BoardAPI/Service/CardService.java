@@ -47,19 +47,19 @@ public class CardService {
 
     }
     //update
-    public GetCardResponseObject updateCard(Long card_id, GetCardRequestObject updateCard){
-        Optional<Cards> optionalCards=cardRepository.findById(card_id);
-        if (optionalCards.isPresent()){
-            Cards cards=optionalCards.get();
-            cards.setTitle(cards.getTitle());
-            cards.setDescription(cards.getDescription());
-            cards.setSection(cards.getSection());
+    public GetCardResponseObject updateCard(Long card_id, GetCardRequestObject updateCard) {
+        Optional<Cards> optionalCards = cardRepository.findById(card_id);
+        if (optionalCards.isPresent()) {
+            Cards cards = optionalCards.get();
+            cards.setTitle(updateCard.getTitle());            // Update title
+            cards.setDescription(updateCard.getDescription());  // Update description
+            cards.setSection(updateCard.getSection());          // Update section
             cardRepository.save(cards);
             return getById(card_id);
         }
         return null;
-
     }
+
     //    delete
     public  void deleteCard(Long card_id){cardRepository.deleteById(card_id);}
 
