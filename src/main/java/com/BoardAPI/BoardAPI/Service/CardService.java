@@ -17,7 +17,7 @@ public class CardService {
 
     //Create card
     public Cards cardsInBoard (Long card_id,Cards cards){
-       cards.setSection("2");
+       cards.setSection(cards.getSection());
        Cards saveCard =cardRepository.save(cards);
        return saveCard;
     }

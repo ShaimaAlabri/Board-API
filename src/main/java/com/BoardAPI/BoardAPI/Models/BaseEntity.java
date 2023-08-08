@@ -1,6 +1,7 @@
 package com.BoardAPI.BoardAPI.Models;
 
 import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,4 +10,7 @@ import lombok.Setter;
 @MappedSuperclass
 
 public class BaseEntity {
+    Long id;
+    Data createDate;
+    Data updateDate;
 }

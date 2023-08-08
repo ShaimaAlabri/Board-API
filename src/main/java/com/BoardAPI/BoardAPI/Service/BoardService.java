@@ -59,6 +59,7 @@ public class BoardService {
             Board board = optionalBoard.get();
             GetBoardResponseObject response = new GetBoardResponseObject();
             response.setTitle(board.getTitle());
+            response.setName(board.getTitle());
             return response;
         }
         return null;

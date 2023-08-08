@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello-Style Dummy Cards</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .board-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .board-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .board {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .list {
+            background-color: #ebecf0;
+            border-radius: 5px;
+            padding: 10px;
+            width: 300px;
+            min-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .list-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: #f0f0f0;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Styles for text boxes, dropdowns, and buttons */
+        input[type="text"], select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #0079bf;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.updateSelectedCard {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005a8e;
+        }
+    </style>
+</head>
+<body>
+<div class="board-container">
+    <div class="board-title" id="editable-title" contenteditable="true">Change title of the project management board</div>
+    <input type="text" id="newBoardTitle" placeholder="New Board Title">
+    <button id="updateBoardTitleButton">Update Board Title</button>
+    <div class="board">
+        <div class="list" id="todo">
+            <div class="list-title">TODO</div>
+            <div class="todo-column"></div>
+        </div>
+        <div class="list" id="in-progress">
+            <div class="list-title">In Progress</div>
+            <div class="in-progress-column"></div>
+        </div>
+        <div class="list" id="done">
+            <div class="list-title">Done</div>
+            <div class="done-column"></div>
+        </div>
+    </div>
+    <input type="text" id="cardTitle" placeholder="Card Title">
+    <input type="text" id="cardDescription" placeholder="Card Description">
+    <select id="cardStatus">
+        <option value="todo">TODO</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+    </select>
+    <button id="addCardButton">Add Card</button>
+    <select id="IDNumber">
+        <!-- Options will be dynamically added using JavaScript -->
+    </select>
+    <button class="delete-button" id="deleteCardsButton">Delete Cards</button>
+
+    <input type="text" id="CardID" placeholder="Enter the card ID">
+    <input type="text" id="updateCardTitle" placeholder="New Card Title">
+    <input type="text" id="updateCardDescription" placeholder="New Card Description">
+    <select id="updateCardStatus">
+        <option value="todo">TODO</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+    </select>
+    <button class="updateSelectedCard" id="updateCardButton">Update</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
