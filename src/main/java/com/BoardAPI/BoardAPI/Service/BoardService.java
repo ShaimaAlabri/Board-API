@@ -35,7 +35,7 @@ public class BoardService {
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         if (optionalBoard.isPresent()) {
             Board board = optionalBoard.get();
-            board.setTitle(updateBoard.getTitle());
+            board.setName(updateBoard.getName());
             boardRepository.save(board);
             return getBoardResponseObject(boardId);  // Use the appropriate method
         }
@@ -52,7 +52,7 @@ public class BoardService {
         if (optionalBoard.isPresent()) {
             Board board = optionalBoard.get();
             GetBoardResponseObject response = new GetBoardResponseObject();
-            response.setName(board.getTitle()); // Change setTitle to setName
+            response.setName(board.getName()); // Change setTitle to setName
             return response;
         }
         return null;

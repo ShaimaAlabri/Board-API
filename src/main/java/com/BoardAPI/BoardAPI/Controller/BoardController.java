@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/board")
+@RequestMapping("/api/boards")
 @CrossOrigin("*")
 public class BoardController {
     @Autowired
@@ -23,7 +23,7 @@ public class BoardController {
     @PostMapping
     public ResponseEntity<GetBoardResponseObject> createBoard(@RequestBody GetBoardRequestObject request) {
         Board board = new Board();
-        board.setTitle(request.getTitle());
+        //board.setTitle(request.getTitle());
         board.setName(request.getName()); // Set the name field
         Board boardCreate = boardService.createBoard(board);
         GetBoardResponseObject responseObject = new GetBoardResponseObject();

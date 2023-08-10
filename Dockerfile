@@ -4,4 +4,4 @@ WORKDIR /app
 copy . /app
 run mvn clean install -DskipTests
 EXPOSE 8080
-CMD ["java", "-jar", "./target/game-api-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "./target/boardAPI-0.0.1-SNAPSHOT.jar"]

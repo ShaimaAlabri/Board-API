@@ -1,3 +1,4 @@
+
 package com.BoardAPI.BoardAPI.Service;
 
 import com.BoardAPI.BoardAPI.Models.Cards;
@@ -7,70 +8,51 @@ import com.BoardAPI.BoardAPI.ResponseObject.GetCardResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CardService {
+
     @Autowired
-    CardRepository cardRepository;
-    private static Map<Long,List<Cards>> cardsInBoard =new HashMap<>();
+    private CardRepository cardRepository;
 
-    //Create card
-    public Cards cardsInBoard (Long card_id,Cards cards){
-       cards.setSection(cards.getSection());
-       Cards saveCard =cardRepository.save(cards);
-       return saveCard;
-    }
-//    unique card ID
-    private static Long uniqueCardId(){
-        return new Random().nextLong();
-
+    public Cards createCard(Long boardId, Cards card) {
+        // Set any board-specific properties here if needed
+        // For example: card.setBoardId(boardId);
+        return cardRepository.save(card);
     }
 
-    //    get all boards
-    public List<Cards> getCards(){
-        return cardRepository.findAll();
+    public List<Cards> getCardsInBoard(Long boardId) {
+        // Implement the logic to fetch cards within a specific board
+        // For example: return cardRepository.findByBoardId(boardId);
+        return cardRepository.findAll(); // Placeholder example
     }
 
-    //    get by ID
-    public GetCardResponseObject getById(Long card_id){
-        Optional<Cards> optionalCards=cardRepository.findById(card_id);
-        if (optionalCards.isPresent()){
-            Cards cards=optionalCards.get();
-            GetCardResponseObject response=new GetCardResponseObject();
-            response.setDescription(cards.getDescription());
-            response.setTitle(cards.getTitle());
-            response.setSection(cards.getSection());
-            return response;
-        }
-        return null;
-
-    }
-    //update
-    public GetCardResponseObject updateCard(Long card_id, GetCardRequestObject updateCard) {
-        Optional<Cards> optionalCards = cardRepository.findById(card_id);
-        if (optionalCards.isPresent()) {
-            Cards cards = optionalCards.get();
-            cards.setTitle(updateCard.getTitle());
-            cards.setDescription(updateCard.getDescription());
-            cards.setSection(updateCard.getSection());
-            cardRepository.save(cards);
-
-            // Construct the response using the updated card
-            GetCardResponseObject response = new GetCardResponseObject();
-            response.setCardId(cards.getCard_id()); // Set card_id
-            response.setSection(cards.getSection());
-            response.setTitle(cards.getTitle());
-            response.setDescription(cards.getDescription());
-
-            return response;
+    public GetCardResponseObject getById(Long cardId) {
+        Optional<Cards> optionalCard = cardRepository.findById(cardId);
+        if (optionalCard.isPresent()) {
+            Cards card = optionalCard.get();
+            return new GetCardResponseObject(card.getCard_id(), card.getSection(), card.getTitle(), card.getDescription());
         }
         return null;
     }
 
-    //    delete
-    public  void deleteCard(Long card_id){cardRepository.deleteById(card_id);}
+    public void deleteCard(Long cardId) {
+        cardRepository.deleteById(cardId);
+    }
 
-
-
+    public GetCardResponseObject updateCard(Long cardId, GetCardRequestObject updateCard) {
+        Optional<Cards> optionalCard = cardRepository.findById(cardId);
+        if (optionalCard.isPresent()) {
+            Cards card = optionalCard.get();
+            card.setSection(updateCard.getSection());
+            card.setTitle(updateCard.getTitle());
+            card.setDescription(updateCard.getDescription());
+            cardRepository.save(card);
+            return new GetCardResponseObject(card.getCard_id(), card.getSection(), card.getTitle(), card.getDescription());
+        }
+        return null;
+    }
 }
+

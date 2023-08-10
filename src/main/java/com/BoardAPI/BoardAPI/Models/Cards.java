@@ -16,6 +16,7 @@ public class Cards {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long card_id;
+
     String title;
     String description;
     String section;

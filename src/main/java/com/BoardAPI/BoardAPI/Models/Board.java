@@ -16,7 +16,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name; // This field seems to be relevant for the 'name' in response
-    String title;
+    //String title;
 
     @ElementCollection
     @CollectionTable(name = "board_columns",joinColumns = @JoinColumn(name="board_id"))

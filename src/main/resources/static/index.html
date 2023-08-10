@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,9 @@
 
         .board {
             display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            display: flex;
             padding: 20px;
             gap: 20px;
             overflow-x: auto;
@@ -49,7 +53,7 @@
         }
 
         .card {
-            background-color: #fff;
+            background-color: #ebdaecc5;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 10px;
@@ -59,7 +63,7 @@
         }
 
         .card:hover {
-            background-color: #f0f0f0;
+            background-color: #f5dfdf;
         }
 
         .card-title {
@@ -73,11 +77,12 @@
         }
 
         /* Styles for text boxes, dropdowns, and buttons */
-        input[type="text"], select {
+        input[type="text"],
+        select {
             width: 100%;
             padding: 5px;
             margin-bottom: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #696868;
             border-radius: 3px;
         }
 
@@ -117,45 +122,48 @@
         }
     </style>
 </head>
+
 <body>
-<div class="board-container">
-    <div class="board-title" id="editable-title" contenteditable="true">Change title of the project management board</div>
-    <input type="text" id="newBoardTitle" placeholder="New Board Title">
-    <button id="updateBoardTitleButton">Update Board Title</button>
-    <div class="board">
-        <div class="list" id="todo">
-            <div class="list-title">TODO</div>
-            <div class="todo-column"></div>
+    <div class="board-container">
+        <div class="board-title" id="editable-title" contenteditable="true">Change title of the project management board
         </div>
-        <div class="list" id="in-progress">
-            <div class="list-title">In Progress</div>
-            <div class="in-progress-column"></div>
+        <input type="text" id="newBoardTitle" placeholder="New Board Title">
+        <button id="updateBoardTitleButton">Update Board Title</button>
+        <div class="board">
+            <div class="list" id="todo">
+                <div class="list-title"></div>
+                <div class="todo-column"></div>
+            </div>
+            <div class="list" id="in-progress">
+                <div class="list-title"></div>
+                <div class="in-progress-column"></div>
+            </div>
+            <div class="list" id="done">
+                <div class="list-title"></div>
+                <div class="done-column"></div>
+            </div>
         </div>
-        <div class="list" id="done">
-            <div class="list-title">Done</div>
-            <div class="done-column"></div>
-        </div>
+        <input type="text" id="cardTitle" placeholder="Card Title">
+        <input type="text" id="cardDescription" placeholder="Card Description">
+        <select id="cardStatus">
+            <option value="todo">TODO</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+        </select>
+        <button id="addCardButton">Add Card</button>
+        <select id="IDNumber">
+            <!-- Options will be dynamically added using JavaScript -->
+        </select>
+        <button class="delete-button" id="deleteCardsButton">Delete Cards</button>
+
+        <input type="text" id="CardID" placeholder="Enter the card ID">
+        <input type="text" id="updateCardTitle" placeholder="New Card Title">
+        <input type="text" id="updateCardDescription" placeholder="New Card Description">
+        <input type="number" id="updateCardStatus" placeholder="Enter Card Section (1, 2, 3)">
+        <button class="updateSelectedCard" id="updateCardButton" onclick="updateSelectedCard()">Update</button>
     </div>
-    <input type="text" id="cardTitle" placeholder="Card Title">
-    <input type="text" id="cardDescription" placeholder="Card Description">
-    <select id="cardStatus">
-        <option value="todo">TODO</option>
-        <option value="in-progress">In Progress</option>
-        <option value="done">Done</option>
-    </select>
-    <button id="addCardButton">Add Card</button>
-    <select id="IDNumber">
-        <!-- Options will be dynamically added using JavaScript -->
-    </select>
-    <button class="delete-button" id="deleteCardsButton">Delete Cards</button>
 
-    <input type="text" id="CardID" placeholder="Enter the card ID">
-    <input type="text" id="updateCardTitle" placeholder="New Card Title">
-    <input type="text" id="updateCardDescription" placeholder="New Card Description">
-    <input type="number" id="updateCardStatus" placeholder="Enter Card Section (1, 2, 3)">
-    <button class="updateSelectedCard" id="updateCardButton">Update</button>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

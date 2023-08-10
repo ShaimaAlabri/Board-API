@@ -5,8 +5,8 @@ services:
     ports:
       - "9090:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: qwerty
-      MYSQL_DATABSE: techycodetribedb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABSE: boardAPI
       MYSQL_TCP_PORT: 3306
     restart: on-failure
 
@@ -20,12 +20,12 @@ services:
 
 
 
-#  ui:
-#    image: nginx
-#    ports:
-#      - "80:80"
-#    volumes:
-#      - ./src/main/resources/static/ui:/usr/share/nginx/html
-#    restart: on-failure
-#    depends_on:
-#      - api
+  ui:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/main/ui:/usr/share/nginx/html
+    restart: on-failure
+    depends_on:
+      - api
