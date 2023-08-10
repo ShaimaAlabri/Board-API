@@ -8,8 +8,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetCardResponseObject {
-    Long card_id;
-    String title;
-    String description;
-    String section;
+    private Long cardId; // Update the field name to cardId
+    private String title;
+    private String description;
+    private String section;
 }
+
+

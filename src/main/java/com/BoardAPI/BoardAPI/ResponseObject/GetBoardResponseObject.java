@@ -5,20 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Map;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetBoardResponseObject {
-    String boardId;
-    String name;
-    String[]columns;
-
-    public String getBoardId(){return boardId;}
-    public void setBoardId(String boardId){this.boardId=boardId;}
-    public void setTitle (String title){this.name=title;}
-
-
-
-
+    private Long boardId;
+    private String name;
+    private Map<Integer, String> columns;
 }

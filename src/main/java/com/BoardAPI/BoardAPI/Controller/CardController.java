@@ -26,13 +26,18 @@ public class CardController {
         cards.setTitle(cardRequestObject.getTitle());
         cards.setDescription(cardRequestObject.getDescription());
         Cards cardCreated = cardService.cardsInBoard(boardId, cards);
+
+        // Create a response object with card details including card_id
         GetCardResponseObject responseObject = new GetCardResponseObject();
+        responseObject.setCardId(cardCreated.getCard_id()); // Set card_id
         responseObject.setSection(cardCreated.getSection());
         responseObject.setTitle(cardCreated.getTitle());
         responseObject.setDescription(cardCreated.getDescription());
-        return new ResponseEntity<>(responseObject, HttpStatus.OK);
 
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
     }
+
+
 //    get cards
     @GetMapping
     public List<Cards>getCards(){

@@ -15,17 +15,11 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
+    String name; // This field seems to be relevant for the 'name' in response
     String title;
 
     @ElementCollection
     @CollectionTable(name = "board_columns",joinColumns = @JoinColumn(name="board_id"))
     @MapKeyColumn(name = "column_index")
     private Map<Integer,String> columns;
-
-
-
-
-
-
 }

@@ -51,11 +51,19 @@ public class CardService {
         Optional<Cards> optionalCards = cardRepository.findById(card_id);
         if (optionalCards.isPresent()) {
             Cards cards = optionalCards.get();
-            cards.setTitle(updateCard.getTitle());            // Update title
-            cards.setDescription(updateCard.getDescription());  // Update description
-            cards.setSection(updateCard.getSection());          // Update section
+            cards.setTitle(updateCard.getTitle());
+            cards.setDescription(updateCard.getDescription());
+            cards.setSection(updateCard.getSection());
             cardRepository.save(cards);
-            return getById(card_id);
+
+            // Construct the response using the updated card
+            GetCardResponseObject response = new GetCardResponseObject();
+            response.setCardId(cards.getCard_id()); // Set card_id
+            response.setSection(cards.getSection());
+            response.setTitle(cards.getTitle());
+            response.setDescription(cards.getDescription());
+
+            return response;
         }
         return null;
     }

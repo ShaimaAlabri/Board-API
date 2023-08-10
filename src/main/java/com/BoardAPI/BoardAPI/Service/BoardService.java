@@ -12,57 +12,49 @@ import java.util.Optional;
 
 @Service
 public class BoardService {
-  @Autowired
+    @Autowired
     BoardRepository boardRepository;
-//Create board
-    public Board createBoard (Board board){
+
+    // Create board
+    public Board createBoard(Board board) {
         return boardRepository.save(board);
     }
-//    get all boards
-    public List<Board> getBoard(){
+
+    // Get all boards
+    public List<Board> getAllBoards() {
         return boardRepository.findAll();
     }
 
-//    get by ID
-    public GetBoardResponseObject getById(Long boardId){
-        Optional<Board> optionalBoard=boardRepository.findById(boardId);
-        if (optionalBoard.isPresent()){
-            Board board=optionalBoard.get();
-            GetBoardResponseObject response=new GetBoardResponseObject();
-            response.setBoardId(String.valueOf(board.getId()));
-            response.setTitle(board.getTitle());
-            response.setName(board.getTitle());
-            return response;
-        }
-        return null;
-
+    // Get board by ID
+    public Board getBoardById(Long id) {
+        return boardRepository.findById(id).orElse(null);
     }
-    //update
-    public GetBoardResponseObject updateBoard(Long boardId, GetBoardRequestObject updateBoard){
-        Optional<Board> optionalBoard=boardRepository.findById(boardId);
-        if (optionalBoard.isPresent()){
-            Board board=optionalBoard.get();
+
+    // Update
+    public GetBoardResponseObject updateBoard(Long boardId, GetBoardRequestObject updateBoard) {
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        if (optionalBoard.isPresent()) {
+            Board board = optionalBoard.get();
             board.setTitle(updateBoard.getTitle());
             boardRepository.save(board);
-            return getById(boardId);
+            return getBoardResponseObject(boardId);  // Use the appropriate method
         }
         return null;
-
     }
-//    delete
-    public  void deleteBoard(Long id){boardRepository.deleteById(id);}
 
+    // Delete
+    public void deleteBoard(Long id) {
+        boardRepository.deleteById(id);
+    }
 
-    public GetBoardResponseObject getBoardResponseObject (Long boardId) {
+    public GetBoardResponseObject getBoardResponseObject(Long boardId) {
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
         if (optionalBoard.isPresent()) {
             Board board = optionalBoard.get();
             GetBoardResponseObject response = new GetBoardResponseObject();
-            response.setTitle(board.getTitle());
-            response.setName(board.getTitle());
+            response.setName(board.getTitle()); // Change setTitle to setName
             return response;
         }
         return null;
     }
-
 }
