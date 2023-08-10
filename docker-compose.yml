@@ -3,10 +3,10 @@ services:
   gdb:
     image: mysql:8.0.33
     ports:
-      - "9090:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABSE: boardAPI
+      MYSQL_DATABASE: boardAPI
       MYSQL_TCP_PORT: 3306
     restart: on-failure
 
@@ -18,14 +18,12 @@ services:
     depends_on:
       - gdb
 
-
-
   ui:
     image: nginx
     ports:
       - "80:80"
     volumes:
-      - ./src/main/ui:/usr/share/nginx/html
+      - ./src/main/resources/static:/usr/share/nginx/html
     restart: on-failure
     depends_on:
       - api
