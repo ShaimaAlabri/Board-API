@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class Cards {
+public class Cards extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long card_id;

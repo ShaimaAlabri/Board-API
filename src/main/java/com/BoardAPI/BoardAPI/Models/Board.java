@@ -11,7 +11,7 @@ import java.util.Map;
 @Setter
 @Entity
 @Data
-public class Board {
+public class Board extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

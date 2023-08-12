@@ -1,15 +1,15 @@
 // script.js
-// script.js
 
 const fixedBoardId = 1; // Replace with your actual fixed board ID
-const base_url = 'http://localhost:8080/api/boards/1'; // Define the base API URL
+//const base_url = 'http://localhost:8080/api/boards/1'; // Define the base API URL
+const host = window.location.host;
+const BASE_URL = "http://" + host + ":8080"
 
-// script.js
 
 // Function to fetch and display the board title
 async function displayBoardTitle() {
     try {
-        const response = await fetch(`http://localhost:8080/api/boards/1`);
+        const response = await fetch(`${BASE_URL}/api/boards/1`);
         if (!response.ok) {
             throw new Error(`Failed to fetch board title. Status: ${response.status} ${response.statusText}`);
         }
@@ -46,7 +46,7 @@ function updateTitle() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/api/boards/1", requestOptions)
+    fetch(`${BASE_URL}/api/boards/1`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -68,7 +68,7 @@ function updateBoardTitle() {
 
 // Function to send a request to the API to update the board title
 function sendUpdateTitleRequest(newTitle) {
-    const apiEndpoint = `http://localhost:8080/api/board/1`;
+    const apiEndpoint = `${BASE_URL}/api/board/1`;
 
     fetch(apiEndpoint, {
         method: 'PUT',
@@ -85,7 +85,7 @@ function sendUpdateTitleRequest(newTitle) {
 
 // Call this function when the "Add Card" button is clicked
 function addCustomCard() {
-    const apiEndpoint = `${base_url}/cards`; // Use the correct API endpoint
+    const apiEndpoint = `${BASE_URL}/api/boards/1/cards`; // Use the correct API endpoint
     const cardTitle = document.getElementById('cardTitle').value;
     const cardDescription = document.getElementById('cardDescription').value;
     const taskPriority = document.getElementById('cardStatus').value;
@@ -149,7 +149,7 @@ function deleteSelectedCard() {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:8080/api/boards/1/cards/${selectedID}`, requestOptions)
+    fetch(`${BASE_URL}/api/boards/1/cards/${selectedID}`, requestOptions)
         .then(response => response.text())
         .then(result => {
             console.log(result)
@@ -184,7 +184,7 @@ function getStatusText(statusCode) {
 // Function to display cards in each section
 async function displayCardsBySection() {
     try {
-        const response = await fetch(`${base_url}/cards`);
+        const response = await fetch(`${BASE_URL}/api/boards/1/cards`);
         if (!response.ok) {
             throw new Error(`Failed to fetch cards. Status: ${response.status} ${response.statusText}`);
         }
@@ -287,7 +287,7 @@ function updateSelectedCard() {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:8080/api/boards/1/cards/${selectedID}`, requestOptions)
+    fetch(`${BASE_URL}/api/boards/1/cards/${selectedID}`, requestOptions)
         .then(response => response.text())
         .then(result => location.reload())
         .catch(error => console.log('error', error));
